@@ -10,33 +10,26 @@
 <link rel="icon" href="logo.png">
 <script src="config.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,800&family=DM+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap">
 <style>
 body{margin:0}
 /* Layout: logo + team sunburst on top, a grid of filling hearts (one per leader), then tabs for the gift log and the outreach board. */
 :root{
   --heart:#c2181f; --heart-soft:#fbe3e4; --sky:#00aeef; --sky-soft:#dcf3fd; --ray:#8dd8f8;
-  --bg:#f6fbfe; --card:#ffffff; --ink:#1d2a33; --muted:#5d6f7b; --line:#d7e6ee;
+  --bg:#ffffff; --card:#f3f9fc; --ink:#1d2a33; --muted:#5d6f7b; --line:#d7e6ee;
   --good:#1d8a52; --good-soft:#dff3e8; --warn:#a86a00; --warn-soft:#fbefd6; --bad:#8a3b3b; --bad-soft:#f3e2e2;
-  --f-display:"Lilita One","Arial Rounded MT Bold","Trebuchet MS",sans-serif;
-  --f-body:"Nunito Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --f-num:"DM Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --f-display:"Open Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-body:"Open Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-num:"Open Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --heart:#ff5a61; --heart-soft:#3a1c1f; --sky:#3cc4f5; --sky-soft:#12303d; --ray:#2b6f8c;
-  --bg:#0e171d; --card:#16232b; --ink:#e8f1f6; --muted:#9db0bc; --line:#26363f;
-  --good:#5fd39a; --good-soft:#163527; --warn:#f0b84f; --warn-soft:#3a2e14; --bad:#f09a9a; --bad-soft:#3a1f1f; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --heart:#ff5a61; --heart-soft:#3a1c1f; --sky:#3cc4f5; --sky-soft:#12303d; --ray:#2b6f8c;
-  --bg:#0e171d; --card:#16232b; --ink:#e8f1f6; --muted:#9db0bc; --line:#26363f;
-  --good:#5fd39a; --good-soft:#163527; --warn:#f0b84f; --warn-soft:#3a2e14; --bad:#f09a9a; --bad-soft:#3a1f1f; color-scheme:dark}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 .wrap>*,.wrap section>*{min-width:0}
 img{max-width:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
 .wrap{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:20px 60px;display:grid;gap:28px}
-h1,h2,h3{font-family:var(--f-display);font-weight:400;margin:0;text-wrap:balance;letter-spacing:.01em}
+h1,h2,h3{font-family:var(--f-display);font-weight:800;margin:0;text-wrap:balance;letter-spacing:-.01em}
 .num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
 button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
@@ -46,16 +39,16 @@ button{cursor:pointer}
 .top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center}
 .brand{display:flex;gap:14px;align-items:center;min-width:0}
 .brand img{width:64px;height:auto;border-radius:10px;background:#fff;padding:4px;flex:none}
-.brand h1{font-size:clamp(28px,5vw,42px);line-height:1.05;color:var(--heart)}
+.brand h1{font-size:clamp(26px,4.4vw,36px);line-height:1.1;color:var(--ink)}
 .brand p{margin:2px 0 0;color:var(--muted);font-weight:600}
 .team{display:flex;gap:18px;align-items:center}
 .sun{width:150px;height:150px;flex:none}
-.team-txt .big{font-family:var(--f-display);font-size:34px;line-height:1;color:var(--heart)}
+.team-txt .big{font-family:var(--f-display);font-weight:800;font-size:34px;line-height:1;color:var(--heart)}
 .team-txt .sub{color:var(--muted);font-weight:600}
 .team-txt .sub b{color:var(--ink)}
 @media (max-width:720px){.top{grid-template-columns:1fr}.sun{width:120px;height:120px}}
 
-.actions{display:flex;flex-wrap:wrap;gap:10px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .btn{border:0;border-radius:10px;padding:11px 18px;font-weight:800;display:inline-flex;align-items:center;gap:8px}
 .btn-heart{background:var(--heart);color:#fff}
 .btn-sky{background:var(--sky);color:#062a38}
@@ -65,7 +58,7 @@ button{cursor:pointer}
 
 /* Panels (forms) */
 .panel{background:var(--card);border-radius:10px;padding:20px;display:grid;gap:14px}
-.panel h3{font-size:22px}
+.panel h3{font-size:18px}
 .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
 label.f{display:grid;gap:4px;font-weight:700;font-size:13px;color:var(--muted)}
 label.f input,label.f select,label.f textarea{border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:var(--bg);font-weight:600;font-size:15px;min-width:0}
@@ -75,8 +68,8 @@ label.chk{display:flex;gap:8px;align-items:center;font-weight:700}
 .msg.err{color:var(--heart)}
 
 /* Hearts grid */
-.sec-head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap}
-.sec-head h2{font-size:28px}
+.sec-head{display:grid;gap:4px}
+.sec-head h2{font-size:22px}
 .sec-head p{margin:0;color:var(--muted);font-weight:600}
 .hearts{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:22px 12px}
 .hc{background:none;border:0;border-radius:10px;padding:6px 4px;display:grid;justify-items:center;gap:2px;text-align:center;position:relative}
@@ -158,8 +151,8 @@ tr:last-child td{border-bottom:0}
   </header>
 
   <div class="actions">
-    <button class="btn btn-heart" id="openGift" type="button">+ Log a donation</button>
-    <button class="btn btn-sky" id="openOut" type="button">+ Log a business I contacted</button>
+    <button class="btn btn-heart" id="openGift" type="button">Log a donation</button>
+    <button class="btn btn-sky" id="openOut" type="button">Log outreach</button>
     <span class="status" id="status">Loading…</span>
   </div>
 
@@ -253,7 +246,7 @@ function heartSVG(pct,id){
     <path d="${heartPath()}" fill="var(--heart-soft)"/>
     <rect x="0" y="${y}" width="100" height="92" fill="var(--heart)" clip-path="url(#c${id})"/>
     <path d="${heartPath()}" fill="none" stroke="var(--heart)" stroke-width="3"/>
-    <text x="50" y="48" text-anchor="middle" font-family="DM Mono, monospace" font-size="16" font-weight="500" fill="${pct>.5?'#fff':'var(--ink)'}">${Math.round(pct*100)}%</text>
+    <text x="50" y="48" text-anchor="middle" font-family="Open Sans, sans-serif" font-size="16" font-weight="700" fill="${pct>.5?'#fff':'var(--ink)'}">${Math.round(pct*100)}%</text>
   </svg>`;
 }
 function drawSun(pct){
@@ -285,14 +278,14 @@ function render(){
   $("teamTotal").textContent=money(team);
   $("teamGoal").textContent=money(teamGoal);
   $("teamPct").textContent=teamGoal?Math.round(team/teamGoal*100)+"% of the way":"";
-  $("goalLine").textContent=`Goal: ${money(state.goal)} per leader. Each heart fills up as you get closer. Tap one to see that leader's gifts.`;
+  $("goalLine").textContent=`Goal: ${money(state.goal)} per leader. Tap a heart to see that leader's gifts.`;
   drawSun(teamGoal?team/teamGoal:0);
 
   const order=[...state.leaders].sort((a,b)=>by[b].sum-by[a].sum||a.localeCompare(b));
   $("hearts").innerHTML=order.length?order.map((l,i)=>{
     const t=by[l],pct=state.goal?t.sum/state.goal:0;
     return `<button type="button" class="hc ${pct>=1?'done':''}" data-leader="${esc(l)}" aria-pressed="${state.filter===l}">
-      <span class="rank">#${i+1}</span>${heartSVG(pct,i)}
+      ${heartSVG(pct,i)}
       <span class="nm">${esc(l)}</span>
       <span class="amt"><b class="num">${money(t.sum)}</b> of ${money(state.goal)}</span>
       <span class="badges">${badges(t)}</span></button>`;
