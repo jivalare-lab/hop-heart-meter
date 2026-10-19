@@ -304,7 +304,7 @@ function render(){
     <td><button type="button" class="pill ${g.received?'yes':'no'}" data-toggle="received" data-id="${esc(g.id)}">${g.received?"Received":"Not yet"}</button></td>
     <td><button type="button" class="pill ${g.thanked?'yes':'no'}" data-toggle="thanked" data-id="${esc(g.id)}">${g.thanked?"Sent":"To send"}</button></td>
     <td><button type="button" class="x" data-del="${esc(g.id)}" aria-label="Delete this donation">Delete</button></td></tr>`).join("")
-    :`<tr><td colspan="8" class="empty">${state.loaded.g?"No donations logged yet. Tap “+ Log a donation” to fill the first heart.":"Loading donations…"}</td></tr>`;
+    :`<tr><td colspan="8" class="empty">${state.loaded.g?"No donations logged yet. Tap “Log a donation” to fill the first heart.":"Loading donations…"}</td></tr>`;
 
   const outs=state.out.filter(o=>!state.filter||o.leader===state.filter);
   $("board").innerHTML=Object.keys(STAT).map(k=>{
