@@ -17,6 +17,18 @@ Fundraising and outreach tracker for the Heart of Passion Nola Leadership Develo
 5. Deploy > New deployment > type Web app. Execute as: Me. Who has access: Anyone. Deploy and copy the Web app URL.
 6. Paste that URL into `config.js` as `scriptUrl`, commit and push.
 
+## Update the backend after a change to Code.gs
+
+Paste the new `Code.gs` in the Apps Script editor and save. Then Deploy > Manage deployments > pencil icon > Version: New version > Deploy. The URL stays the same.
+
+## Security
+
+- Writes need `TEAM_CODE` (Script Properties, never in this repo). After 25 wrong codes in 10 minutes, all writes pause for 10 minutes.
+- Text that would start a formula (`= + - @`) is stored as plain text.
+- Every write goes to the `Log` tab; a deleted row is copied there first, so nothing is lost.
+- The page has a Content-Security-Policy and escapes everything it shows.
+- The page cannot change the goal, the roster or the script. Only the Sheet owner can.
+
 ## Change the roster or the goal
 
 Edit the `Settings` tab of the Sheet: `goal` and `leaders` (names separated by commas). The page picks it up on the next refresh.

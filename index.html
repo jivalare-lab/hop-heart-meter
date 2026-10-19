@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://script.google.com https://script.googleusercontent.com; base-uri 'none'; form-action 'none'; object-src 'none'">
 <title>HoP Nola Heart Meter</title>
 <link rel="icon" href="logo.png">
 <script src="config.js"></script>
@@ -306,9 +308,9 @@ function render(){
   $("giftRows").innerHTML=gifts.length?gifts.map(g=>`<tr>
     <td class="num">${esc(g.date)}</td><td><b>${esc(g.leader)}</b></td><td>${esc(g.donor)}${g.note?`<div class="status">${esc(g.note)}</div>`:""}</td>
     <td>${esc(g.event)}</td><td class="r num"><b>${money(g.amount)}</b></td>
-    <td><button type="button" class="pill ${g.received?'yes':'no'}" data-toggle="received" data-id="${g.id}">${g.received?"Received":"Not yet"}</button></td>
-    <td><button type="button" class="pill ${g.thanked?'yes':'no'}" data-toggle="thanked" data-id="${g.id}">${g.thanked?"Sent":"To send"}</button></td>
-    <td><button type="button" class="x" data-del="${g.id}" aria-label="Delete this donation">Delete</button></td></tr>`).join("")
+    <td><button type="button" class="pill ${g.received?'yes':'no'}" data-toggle="received" data-id="${esc(g.id)}">${g.received?"Received":"Not yet"}</button></td>
+    <td><button type="button" class="pill ${g.thanked?'yes':'no'}" data-toggle="thanked" data-id="${esc(g.id)}">${g.thanked?"Sent":"To send"}</button></td>
+    <td><button type="button" class="x" data-del="${esc(g.id)}" aria-label="Delete this donation">Delete</button></td></tr>`).join("")
     :`<tr><td colspan="8" class="empty">${state.loaded.g?"No donations logged yet. Tap “+ Log a donation” to fill the first heart.":"Loading donations…"}</td></tr>`;
 
   const outs=state.out.filter(o=>!state.filter||o.leader===state.filter);
@@ -316,8 +318,8 @@ function render(){
     const items=outs.filter(o=>o.status===k).sort((a,b)=>(b.createdAt||"").localeCompare(a.createdAt||""));
     return `<div class="col c-${k}"><h3>${STAT[k]} <span class="num">${items.length}</span></h3>${items.map(o=>`<div class="card">
       <div class="org">${esc(o.org)}</div><div class="meta">${esc(o.leader)} · ${esc(o.how)} · ${esc(o.date)}</div>${o.note?`<div class="meta">${esc(o.note)}</div>`:""}
-      <div style="display:flex;gap:6px;align-items:center;justify-content:space-between"><select data-move="${o.id}" aria-label="Change status">${Object.entries(STAT).map(([v,t])=>`<option value="${v}" ${v===o.status?"selected":""}>${t}</option>`).join("")}</select>
-      <button type="button" class="x" data-odel="${o.id}" aria-label="Delete">Delete</button></div></div>`).join("")||`<div class="status">Nothing here yet</div>`}</div>`;
+      <div style="display:flex;gap:6px;align-items:center;justify-content:space-between"><select data-move="${esc(o.id)}" aria-label="Change status">${Object.entries(STAT).map(([v,t])=>`<option value="${v}" ${v===o.status?"selected":""}>${t}</option>`).join("")}</select>
+      <button type="button" class="x" data-odel="${esc(o.id)}" aria-label="Delete">Delete</button></div></div>`).join("")||`<div class="status">Nothing here yet</div>`}</div>`;
   }).join("");
 
   const ev={};state.gifts.filter(g=>!state.filter||g.leader===state.filter).forEach(g=>{ev[g.event]=(ev[g.event]||0)+(Number(g.amount)||0)});
@@ -336,7 +338,7 @@ function confetti(){
 
 // Backend: a Google Apps Script web app over a Google Sheet (see apps-script/Code.gs)
 const API=(window.HEART_METER_CONFIG||{}).scriptUrl||"";
-const ERR={wrong_code:"That team code is not right. Ask your mentor.",unknown_leader:"Pick your name from the list.",bad_amount:"Enter an amount above $0.",bad_status:"Pick a status.",not_found:"Someone already changed that. Refreshing.",network:"Could not reach the tracker. Check your connection and try again."};
+const ERR={wrong_code:"That team code is not right. Ask your mentor.",paused:"Too many wrong codes. Saving is paused for 10 minutes.",unknown_leader:"Pick your name from the list.",bad_amount:"Enter an amount above $0.",bad_status:"Pick a status.",not_found:"Someone already changed that. Refreshing.",network:"Could not reach the tracker. Check your connection and try again."};
 function getCode(){try{return localStorage.getItem("hm-code")||""}catch(e){return ""}}
 function saveCode(c){try{localStorage.setItem("hm-code",c)}catch(e){}}
 async function load(){

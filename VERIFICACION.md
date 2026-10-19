@@ -4,7 +4,7 @@ dominio: codigo
 nivel_requerido: 4
 nivel_actual: 2
 verificar: node verificar.js
-revisado: 2026-10-18
+revisado: 2026-10-19
 fuente: ~/.claude/verificacion/PROTOCOLO.md
 ---
 
@@ -20,7 +20,7 @@ fuente: ~/.claude/verificacion/PROTOCOLO.md
 | Nivel requerido | **4** |
 | Nivel actual | **2** |
 | Comando de verificación | `node verificar.js` |
-| Última revisión | 2026-10-18 |
+| Última revisión | 2026-10-19 |
 
 **Brecha abierta (2 de 4).** Clasificado el 2026-10-18. Tracker de fundraising de los 17 leaders de HoP Nola 2027: GitHub Pages (jivalare-lab) mas un Google Sheet con Apps Script como backend. Requerido 4 porque los leaders y mentores dependen de los totales para la meta de $2,000 y un error de suma o una fila borrada podria pasar inadvertido; muestra nombres de pila de menores y nombres de donantes a quien tenga el link (noindex y robots.txt, sin correos ni telefonos). Tiene git y verificar.js pasa en verde (sintaxis de la pagina y del Code.gs, ids, noindex, sin guion largo, sin correos ni telefonos), asi que su nivel real es 2. Para el 3 le falta CI; para el 4, pruebas de las reglas criticas del backend (codigo de equipo, montos, borrado) contra una hoja de prueba. Clasificacion inicial del agente, pendiente de que Isaac la confirme.
 
