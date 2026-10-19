@@ -41,4 +41,7 @@ The page is unlisted (noindex, robots.txt) but anyone with the link can see firs
 
 ```
 node verificar.js
+~/.local/share/uv/tools/crawl4ai/bin/python tests/movil.py
 ```
+
+The second one opens the page as an iPhone 13, an iPhone SE and a 360px Android against a fake backend, and taps through logging a donation, the goal celebration, outreach, tabs and the pinned buttons.
